@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Admin | SPEED GRUP</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="login-page">
+
+  <div class="login-card">
+    <div class="login-logo">⚡</div>
+    <h1>SPEED GRUP</h1>
+    <p>Administrator Login</p>
+
+    <form id="loginForm">
+      <label>Email Administrator</label>
+      <input id="loginEmail" type="email"
+        placeholder="admin@speedgrup.com" required>
+
+      <label>Password</label>
+      <input id="loginPassword" type="password"
+        placeholder="Masukkan password" required>
+
+      <button type="submit">LOGIN DASHBOARD →</button>
+      <p id="loginError" class="error"></p>
+    </form>
+
+    <small>© 2026 SPEED GRUP</small>
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+
+      // DEMO SAJA: kredensial tidak aman untuk produksi.
+      if (
+        email === "admin@speedgrup.com" &&
+        password === "admin123"
+      ) {
+        sessionStorage.setItem("speedAdmin", "true");
+        window.location.href = "dashboard.html";
+      } else {
+        document.getElementById("loginError").textContent =
+          "Email atau password tidak sesuai.";
+      }
+    });
+  </script>
+
+</body>
+</html>

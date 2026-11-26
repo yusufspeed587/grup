@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b18">
+  <title>SPEED GRUP | Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="app">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-logo">SG</div>
+        <div>
+          <h2>SPEED <span>GRUP</span></h2>
+          <small>ADMINISTRATION</small>
+        </div>
+        <button class="close-sidebar" id="closeSidebar" aria-label="Tutup menu">×</button>
+      </div>
+
+      <div class="menu-label">MENU UTAMA</div>
+      <nav class="navigation">
+        <a href="#overview" class="nav-link active" data-page="overview"><span>▦</span> Overview</a>
+        <a href="#clients" class="nav-link" data-page="clients"><span>♙</span> Manajemen Klien</a>
+        <a href="#projects" class="nav-link" data-page="projects"><span>▤</span> Manajemen Proyek</a>
+        <a href="#orders" class="nav-link" data-page="orders"><span>🛒</span> Manajemen Pesanan</a>
+        <a href="#finance" class="nav-link" data-page="finance"><span>◇</span> Keuangan</a>
+        <a href="#reports" class="nav-link" data-page="reports"><span>▥</span> Laporan</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="support-card">
+          <div class="support-icon">✦</div>
+          <h3>SPEED GRUP</h3>
+          <p>Kelola bisnis dan proyek dalam satu tempat.</p>
+        </div>
+        <button class="logout-button" id="logoutButton">↪ Keluar Dashboard</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+          <div>
+            <div class="breadcrumb">SPEED GRUP / <span id="breadcrumb">Overview</span></div>
+            <h1 id="pageTitle">Dashboard Overview</h1>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="date-display" id="currentDate"></div>
+          <div class="profile">
+            <div class="avatar">A</div>
+            <div><strong>Administrator</strong><small>Super Admin</small></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+
+        <!-- OVERVIEW -->
+        <section class="page-section active" id="overview">
+          <div class="welcome">
+            <div>
+              <p class="eyebrow">SELAMAT DATANG KEMBALI</p>
+              <h2>Halo, Administrator! 👋</h2>
+              <p>Berikut ringkasan aktivitas SPEED GRUP hari ini.</p>
+            </div>
+            <div class="welcome-mark">SPEED<br><span>GRUP</span></div>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-top"><span>Total Klien</span><span class="stat-icon purple">♙</span></div>
+              <h3 id="totalClients">0</h3><small>Klien terdaftar</small>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span>Total Proyek</span><span class="stat-icon blue">▤</span></div>
+              <h3 id="totalProjects">0</h3><small>Proyek tercatat</small>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span>Total Pesanan</span><span class="stat-icon cyan">🛒</span></div>
+              <h3 id="totalOrders">0</h3><small>Pesanan masuk</small>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span>Saldo Bersih</span><span class="stat-icon green">◇</span></div>
+              <h3 id="totalBalance">Rp0</h3><small>Pemasukan dikurangi pengeluaran</small>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="panel chart-panel">
+              <div class="panel-heading">
+                <div><h3>Ringkasan Keuangan</h3><p>Perbandingan pemasukan dan pengeluaran</p></div>
+                <span class="live-tag">● DATA LOKAL</span>
+              </div>
+              <div class="chart-legend">
+                <span><i class="legend-dot income-dot"></i> Pemasukan</span>
+                <span><i class="legend-dot expense-dot"></i> Pengeluaran</span>
+              </div>
+              <div class="bar-chart" id="overviewChart"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-heading"><div><h3>Aktivitas Terbaru</h3><p>Data terbaru yang tercatat</p></div></div>
+              <div class="activity-list" id="recentActivity"></div>
+            </article>
+          </div>
+
+          <article class="panel table-panel">
+            <div class="panel-heading">
+              <div><h3>Proyek Terbaru</h3><p>Daftar pekerjaan yang sedang dikelola</p></div>
+              <button class="text-button" data-go="projects">Lihat semua →</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Nama Proyek</th><th>Klien</th><th>Tanggal</th><th>Status</th></tr></thead>
+                <tbody id="overviewProjects"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <!-- CLIENTS -->
+        <section class="page-section" id="clients">
+          <div class="section-intro">
+            <div><p class="eyebrow">DATABASE PELANGGAN</p><h2>Manajemen Klien</h2><p>Kelola informasi klien SPEED GRUP.</p></div>
+            <button class="primary-button" id="addClient">＋ Tambah Klien</button>
+          </div>
+          <article class="panel">
+            <div class="panel-heading"><div><h3>Daftar Klien</h3><p id="clientCount">0 klien terdaftar</p></div><input class="search-input" id="clientSearch" placeholder="Cari klien..."></div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Nama Klien</th><th>Email</th><th>Telepon</th><th>Aksi</th></tr></thead>
+              <tbody id="clientsTable"></tbody>
+            </table></div>
+          </article>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="page-section" id="projects">
+          <div class="section-intro">
+            <div><p class="eyebrow">PENGELOLAAN PEKERJAAN</p><h2>Manajemen Proyek</h2><p>Pantau pekerjaan dan progres proyek.</p></div>
+            <button class="primary-button" id="addProject">＋ Tambah Proyek</button>
+          </div>
+          <article class="panel">
+            <div class="panel-heading"><div><h3>Daftar Proyek</h3><p>Seluruh proyek yang tercatat</p></div><input class="search-input" id="projectSearch" placeholder="Cari proyek..."></div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Proyek</th><th>Klien</th><th>Tanggal</th><th>Status</th><th>Aksi</th></tr></thead>
+              <tbody id="projectsTable"></tbody>
+            </table></div>
+          </article>
+        </section>
+
+        <!-- ORDERS -->
+        <section class="page-section" id="orders">
+          <div class="section-intro">
+            <div><p class="eyebrow">TRANSAKSI PELANGGAN</p><h2>Manajemen Pesanan</h2><p>Catat dan pantau pesanan yang masuk.</p></div>
+            <button class="primary-button" id="addOrder">＋ Tambah Pesanan</button>
+          </div>
+          <article class="panel">
+            <div class="panel-heading"><div><h3>Daftar Pesanan</h3><p>Riwayat pesanan pelanggan</p></div></div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Nama Pesanan</th><th>Klien</th><th>Nilai</th><th>Status</th><th>Aksi</th></tr></thead>
+              <tbody id="ordersTable"></tbody>
+            </table></div>
+          </article>
+        </section>
+
+        <!-- FINANCE -->
+        <section class="page-section" id="finance">
+          <div class="section-intro">
+            <div><p class="eyebrow">PENGELOLAAN UANG</p><h2>Keuangan</h2><p>Pantau pemasukan dan pengeluaran bisnis.</p></div>
+            <button class="primary-button" id="addFinance">＋ Tambah Transaksi</button>
+          </div>
+          <div class="finance-summary">
+            <div class="finance-card"><span>Total Pemasukan</span><h3 id="incomeTotal">Rp0</h3></div>
+            <div class="finance-card"><span>Total Pengeluaran</span><h3 id="expenseTotal">Rp0</h3></div>
+            <div class="finance-card"><span>Saldo Bersih</span><h3 id="balanceTotal">Rp0</h3></div>
+          </div>
+          <article class="panel">
+            <div class="panel-heading"><div><h3>Riwayat Transaksi</h3><p>Seluruh transaksi keuangan</p></div></div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Keterangan</th><th>Tanggal</th><th>Jenis</th><th>Jumlah</th><th>Aksi</th></tr></thead>
+              <tbody id="financeTable"></tbody>
+            </table></div>
+          </article>
+        </section>
+
+        <!-- REPORTS -->
+        <section class="page-section" id="reports">
+          <div class="section-intro">
+            <div><p class="eyebrow">ANALISIS BISNIS</p><h2>Laporan</h2><p>Ringkasan data dan aktivitas SPEED GRUP.</p></div>
+            <button class="primary-button" id="exportReport">↓ Export CSV</button>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>Jumlah Klien</span><span class="stat-icon purple">♙</span></div><h3 id="reportClients">0</h3></article>
+            <article class="stat-card"><div class="stat-top"><span>Jumlah Proyek</span><span class="stat-icon blue">▤</span></div><h3 id="reportProjects">0</h3></article>
+            <article class="stat-card"><div class="stat-top"><span>Jumlah Pesanan</span><span class="stat-icon cyan">🛒</span></div><h3 id="reportOrders">0</h3></article>
+            <article class="stat-card"><div class="stat-top"><span>Saldo Bersih</span><span class="stat-icon green">◇</span></div><h3 id="reportBalance">Rp0</h3></article>
+          </div>
+          <article class="panel report-panel">
+            <div class="panel-heading"><div><h3>Ringkasan Bisnis</h3><p>Informasi berdasarkan data yang tersimpan</p></div></div>
+            <div id="reportSummary" class="report-summary"></div>
+          </article>
+        </section>
+
+        <footer class="footer">© 2026 <strong>SPEED GRUP</strong>. Dashboard Prototipe.</footer>
+      </div>
+    </main>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
